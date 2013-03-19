@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Carousel</title>
+ 
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="slides.min.jquery.js"></script>
+ 
+<style>
+ 
+body {
+font:normal 62.5%/1.5 Arial, sans-serif;
+letter-spacing:0;
+background-color:#e5e6e8;
+height:430px;
+padding:0;
+margin:0;
+}
+ 
+/*
+Slideshow
+*/
+ 
+#slides {
+z-index:100;
+}
+ 
+/*
+Slides container
+Important:
+Set the width of your slides container
+Set to display none, prevents content flash
+*/
+ 
+.slides_container {
+width:920px;
+height:390px;
+overflow:hidden;
+display:none;
+}
+ 
+/*
+Each slide
+Important:
+Set the width of your slides
+If height not specified height will be set by the slide content
+Set to display block
+*/
+ 
+.slides_container div.slide {
+width:920px;
+display:block;
+height:390px;
+ 
+}
+ 
+/*
+Next/prev buttons
+*/
+ 
+#slides .next,#slides .prev {
+position:absolute;
+top:160px;
+left:5px;
+width:24px;
+height:43px;
+display:block;
+z-index:101;
+opacity:0.5;
+}
+ 
+#slides .next {
+left:890px;
+}
+ 
+/*
+Pagination
+*/
+ 
+.pagination {
+margin:8px auto 0;
+width:100px;
+}
+ 
+.pagination li {
+float:left;
+margin:0 1px;
+list-style:none;
+}
+ 
+.pagination li a {
+display:block;
+width:12px;
+height:0;
+padding-top:12px;
+background-position:0 0;
+float:left;
+overflow:hidden;
+}
+ 
+.pagination li.current a {
+background-position:0 -18px;
+}
+ 
+/*
+Caption
+*/
+ 
+.caption {
+z-index:500;
+position:absolute;
+left:0;
+bottom:50px;
+height:auto;
+padding:5px 20px 10 20px;
+background:#000;
+background:rgba(0,0,0,0.5);
+width:900px;
+line-height:1.33;
+color:#b0f0d8;
+border-top:1px solid #000;
+text-shadow:none;
+font:normal 16px arial, helvetica;
+ 
+}
+ 
+a:link,a:visited {
+color:#599100;
+text-decoration:none;
+}
+ 
+a:hover,a:active {
+color:#599100;
+text-decoration:underline;
+}
+span#newsTitle{
+font-size:18px;
+text-transform:uppercase;
+font-weight:bold;
+border-bottom:1px solid #b0f0d8;
+ 
+}
+ 
+</style>
+<script>
+$(function(){
+$('#slides').slides({
+preload: true,
+preloadImage: 'img/loading.gif',
+play: 7000,
+pause: 3500,
+hoverPause: true,
+animationStart: function(current){
+$('.caption').animate({
+bottom:-35
+},100);
+if (window.console && console.log) {
+// example return of current slide number
+console.log('animationStart on slide: ', current);
+};
+},
+animationComplete: function(current){
+$('.caption').animate({
+bottom:0
+},200);
+if (window.console && console.log) {
+// example return of current slide number
+console.log('animationComplete on slide: ', current);
+};
+},
+slidesLoaded: function() {
+$('.caption').animate({
+bottom:0
+},200);
+}
+});
+$('.pagination li a').css('background-image', 'url(img/pagination.png)');
+ 
+});
+</script>
+</head>
+<body>
+ 
+<div id="slides">
+<div class="slides_container">
+<div class="slide">
+<img src="http://commondatastorage.googleapis.com/project-demo/097_example.jpg" width="930" height="450" id="imgId"/>
+<div style="bottom:0">
+<p><span id="newsTitle">Image 1</span><br>
+</div>
+</div>
+ 
+<div>
+<img src="http://commondatastorage.googleapis.com/project-demo/b1.jpg" width="930" height="450" id="imgId"/>
+<div style="bottom:0">
+<p><span id="newsTitle">Image 2</span><br>
+</div>
+</div>
+ 
+<div>
+<img src="http://commondatastorage.googleapis.com/project-demo/powerpoint-background-templates.jpg" width="930" height="450" id="imgId"/>
+<div style="bottom:0">
+<p><span id="newsTitle">Image 3</span><br>
+</div>
+</div>
+ 
+<div>
+<img src="http://commondatastorage.googleapis.com/project-demo/FromAwesomeBackgroundsDotCom-Etched.JPG" width="930" height="450" id="imgId"/>
+<div style="bottom:0">
+<p><span id="newsTitle">Image 4</span><br>
+</div>
+</div>
+ 
+</div>
+<a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+<a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+</div>
+ 
+</body>
+</html>
